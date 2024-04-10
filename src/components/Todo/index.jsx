@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { BsPlus, BsSearch } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { todoAction } from "../../redux/actionTypes";
@@ -82,4 +82,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default memo(Todo);

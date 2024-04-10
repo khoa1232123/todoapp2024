@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 const TodoList = () => {
   const filteredTodos = useSelector((state) => {
@@ -20,32 +20,16 @@ const TodoList = () => {
     });
   });
 
-  const todo = useSelector((state) => state.todo);
-
-  const [editTodo, setEditTodo] = useState({
-    id: "",
-    text: "",
-    color: "",
-  });
-
-  useEffect(() => {
-    setEditTodo(todo);
-  }, [todo.id]);
+  console.log("abcddd");
 
   return (
     <ul>
       <li className="my-2 text-sm italic">All Your Notes Here...</li>
       {filteredTodos.map((todo, index) => (
-        <TodoItem
-          key={index}
-          todo={todo}
-          index={index}
-          setEditTodo={setEditTodo}
-          editTodo={editTodo}
-        />
+        <TodoItem key={index} todo={todo} />
       ))}
     </ul>
   );
 };
 
-export default TodoList;
+export default memo(TodoList);

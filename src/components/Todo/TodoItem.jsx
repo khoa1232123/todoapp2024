@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { FaCheck, FaEdit, FaTimes, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,13 +8,25 @@ import {
   toggleTodo,
 } from "../../redux/actions";
 import { convertToDate } from "../../untils";
-import { useRef } from "react";
 
-const TodoItem = ({ todo, editTodo, setEditTodo }) => {
+const TodoItem = ({ todo }) => {
   const dispatch = useDispatch();
 
+  const eTodo = useSelector((state) => state.todo);
+
+  const [editTodo, setEditTodo] = useState({
+    id: "",
+    text: "",
+    color: "",
+  });
+
+  useEffect(() => {
+    if (eTodo.id) {
+      setEditTodo(eTodo);
+    }
+  }, [eTodo.id]);
+
   const handleEditingTodo = (id) => {
-    console.log({ id, editTodo });
     if (id === editTodo.id) {
       dispatch(editedTodo(editTodo));
       setEditTodo({ id: "", text: "", color: "" });

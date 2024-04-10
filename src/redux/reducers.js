@@ -51,7 +51,7 @@ const todoReducer = (state = initState, action) => {
             }
           : todo
       );
-      console.log({ newTodo });
+      console.table(newTodo);
       localStorage.setItem("todos", JSON.stringify(newTodo));
       return {
         ...state,

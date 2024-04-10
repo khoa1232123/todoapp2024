@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterTodos, markAllCompleted } from "../../redux/actions";
 
@@ -32,4 +32,4 @@ const FilterButtons = () => {
   );
 };
 
-export default FilterButtons;
+export default memo(FilterButtons);
